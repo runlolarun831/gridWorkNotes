@@ -1,0 +1,62 @@
+<html>
+  <meta><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+  <style>
+      .row {
+        display: flex;
+      }
+      .cell {
+        width: 3 rem;
+        height: 3 rem;
+        border: solid 1px black;
+      }
+  </style>
+</head>
+<body>
+  <h1>Grid</h1>
+  <div id='grid'>
+    <div class='row'>
+      <div class='cell'>1</div>
+      <div class='cell'>2</div>
+      <div class='cell'>3</div>
+    </div>
+    <div class='row'>
+      <div class='cell'>4</div>
+      <div class='cell'>5</div>
+      <div class='cell'>6</div>
+    </div>
+    <div class='row'>
+      <div class='cell'>7</div>
+      <div class='cell'>8</div>
+      <div class='cell'>9</div>
+    </div>
+  </div>
+</body>
+  <script> //vals for our cells
+  const generateNxN = (n) => {
+    const rows = [];
+    for (let i = 0; i < n; i++) {
+      const row = [];
+      rows.push(row);
+      for (let j= 0; j < n; j++) {
+        row.push(0);
+      }
+    }
+    return rows;
+  }
+  const generateHTML = (rows) => {
+    return rows.map(row => `
+    <div class='row'>
+      ${ row.map( cell => `<div class='cell'>
+        ${ cell } </div>`).join('')}
+      </div>
+      `).join('');
+  };
+  const data = generateNxN(3);
+  const html = generateHTML(data);
+  const grid = document.querySelector('#grid');
+  //grid.innerHTML = html;
+  console.log(html)
+;  </script>
+</html>
+
