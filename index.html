@@ -31,7 +31,7 @@
       <div class='cell'>9</div>
     </div>
   </div>
-</body>
+
   <script> //vals for our cells
   const generateNxN = (n) => {
     const rows = [];
@@ -53,10 +53,17 @@
       `).join('');
   };
   const data = generateNxN(3);
-  const html = generateHTML(data);
   const grid = document.querySelector('#grid');
-  //grid.innerHTML = html;
-  console.log(html)
-;  </script>
+
+  /*create render function to create html
+  when you call render() you are going to take html,
+  generate it from the data in generateNxN, find the grid and set innerHtml */
+  const render = ()=> {
+    const html = generateHTML(data);
+    grid.innerHTML = html;
+  };
+  render();
+</script>
+</body>
 </html>
 
