@@ -9,6 +9,9 @@
         width: 3 rem;
         height: 3 rem;
         border: solid 1px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
   </style>
 </head>
@@ -52,8 +55,19 @@
       </div>
       `).join('');
   };
-  const data = generateNxN(3);
+  const data = generateNxN(5);
   const grid = document.querySelector('#grid');
+
+  grid.addEventListener('click', (ev)=> {
+    const cell = ev.target;
+    const row = cell.parentNode;
+    //need to find where target is located on the grid
+    const cdx = [...row.children].indexOf(cell); // use spread 'splat' operator * see splat.js
+    const rdx = [...row.parentNode.children].indexOf(row); //fyi row.parentNode is the grid
+    data[rdx][cdx]++; //add count each time clicked
+    console.table(data);
+    render();
+  })
 
   /*create render function to create html
   when you call render() you are going to take html,
@@ -62,7 +76,7 @@
     const html = generateHTML(data);
     grid.innerHTML = html;
   };
-  render();
+  render(); //make new grid
 </script>
 </body>
 </html>
